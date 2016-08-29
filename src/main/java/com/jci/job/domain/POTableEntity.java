@@ -21,7 +21,7 @@ public class POTableEntity extends TableServiceEntity {
 	private Integer supplierProcessingStatusCode;
 	private String supplierProcessingStatusmesssage;
 	private String supplierType;
-	private String supplierDeliveryState;
+	private Integer supplierDeliveryState;
 
 	@Override
 	public String toString() {
@@ -30,14 +30,6 @@ public class POTableEntity extends TableServiceEntity {
 				+ ",supplierProcessingStatusCode=" + supplierProcessingStatusCode + ",supplierProcessingStatusmesssage="
 				+ supplierProcessingStatusmesssage + ",supplierType=" + supplierType + ",supplierDeliveryState="
 				+ supplierDeliveryState + "]";
-	}
-
-	public String getSupplierDeliveryState() {
-		return supplierDeliveryState;
-	}
-
-	public void setSupplierDeliveryState(String supplierDeliveryState) {
-		this.supplierDeliveryState = supplierDeliveryState;
 	}
 
 	public String getOrderNumber() {
@@ -110,6 +102,14 @@ public class POTableEntity extends TableServiceEntity {
 
 	public void setSupplierType(String supplierType) {
 		this.supplierType = supplierType;
+	}
+
+	public Integer getSupplierDeliveryState() {
+		return supplierDeliveryState;
+	}
+
+	public void setSupplierDeliveryState(Integer supplierDeliveryState) {
+		this.supplierDeliveryState = supplierDeliveryState;
 	}
 
 }

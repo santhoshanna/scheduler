@@ -15,6 +15,8 @@ public class POItemTableEntity extends TableServiceEntity {
 	}
 
 	private String OrderNumber;
+	private Integer LineID;
+	private Integer RequestID;
 	private String POItemJsonString;
 
 	public String getOrderNumber() {
@@ -33,9 +35,26 @@ public class POItemTableEntity extends TableServiceEntity {
 		POItemJsonString = pOItemJsonString;
 	}
 
+	public Integer getLineID() {
+		return LineID;
+	}
+
+	public void setLineID(Integer LineID) {
+		this.LineID = LineID;
+	}
+
+	public Integer getRequestID() {
+		return RequestID;
+	}
+
+	public void setRequestID(Integer RequestID) {
+		this.RequestID = RequestID;
+	}
+
 	@Override
 	public String toString() {
-		return "POItemTableEntity [OrderNumber=" + OrderNumber + ", POItemJsonString=" + POItemJsonString + "]";
+		return "POItemTableEntity [OrderNumber=" + OrderNumber + ", LineID=" + LineID + ", RequestID=" + RequestID
+				+ ",POItemJsonString=" + POItemJsonString + "]";
 	}
 
 }

@@ -4,6 +4,8 @@
 package com.jci.job.controller;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -12,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jci.job.domain.POResponse;
+import com.jci.job.domain.ItemApigeeGet;
+import com.jci.job.domain.POApigeeGet;
+import com.jci.job.domain.SupplierApigeeGet;
 import com.jci.job.service.ScheduledJobService;
+import com.microsoft.azure.storage.StorageException;
 
 @Configuration
 @RestController
@@ -72,34 +76,37 @@ public class ScheduledJobController {
 
 	@Scheduled(fixedDelay = 600000)
 	@RequestMapping(value = "/getPO", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<POResponse> getPO()
-			throws JsonGenerationException, JsonMappingException, IOException {
+	public @ResponseBody ResponseEntity<POApigeeGet> getPO() throws JsonGenerationException, JsonMappingException,
+			IOException, InvalidKeyException, URISyntaxException, StorageException {
 		LOG.info("### Starting ScheduledJobController.getPoDetails ####");
 		// PoRequest request = new PoRequest();
-		ResponseEntity<POResponse> response = scheduledJobService.getPO(pourl, erp, region, plant, ordernumber,
+		ResponseEntity<POApigeeGet> response = scheduledJobService.getPO(pourl, erp, region, plant, ordernumber,
 				ordercreationdate);
 		LOG.info("response-->" + response);
 		LOG.info("### Ending ScheduledJobController.getPoDetails ####");
 		return response;
 	}
 
-	// @Scheduled(fixedDelay = 6000000)
+	//@Scheduled(fixedDelay = 600000)
 	@RequestMapping(value = "/getSupplier", method = RequestMethod.GET)
-	public @ResponseBody String getSupplier() {
+	public @ResponseBody ResponseEntity<SupplierApigeeGet> getSupplier()
+			throws JsonGenerationException, JsonMappingException, IOException {
 		LOG.info("### Starting ScheduledJobController.getSupplier ####");
 		// PoRequest request = new PoRequest();
-		String response = scheduledJobService.getSupplier(supplierurl, erp, region, plant, suppliername);
+		ResponseEntity<SupplierApigeeGet> response = scheduledJobService.getSupplier(supplierurl, erp, region, plant,
+				suppliername);
 		LOG.info("response-->" + response);
 		LOG.info("### Ending ScheduledJobController.getSupplier ####");
 		return response;
 	}
 
-	// @Scheduled(fixedDelay = 6000000)
+	//@Scheduled(fixedDelay = 600000)
 	@RequestMapping(value = "/getItem", method = RequestMethod.GET)
-	public @ResponseBody String getItem() {
+	public @ResponseBody ResponseEntity<ItemApigeeGet> getItem()
+			throws JsonGenerationException, JsonMappingException, IOException {
 		LOG.info("### Starting ScheduledJobController.getItem ####");
 		// PoRequest request = new PoRequest();
-		String response = scheduledJobService.getItem(itemurl, erp, region, plant, itemnumber);
+		ResponseEntity<ItemApigeeGet> response = scheduledJobService.getItem(itemurl, erp, region, plant, itemnumber);
 		LOG.info("response-->" + response);
 		LOG.info("### Ending ScheduledJobController.getItem ####");
 		return response;

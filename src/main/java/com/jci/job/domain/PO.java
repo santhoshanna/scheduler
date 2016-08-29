@@ -13,22 +13,24 @@ public class PO {
 	private Boolean asn;
 	private String grNumber;
 	private String supplierType;
-	private List<Object> itemList;
+	private List<POItem> itemList;
 
-	
-
-	public List<Object> getItemList() {
+	public List<POItem> getItemList() {
 		return itemList;
 	}
-	public void setItemList(List<Object> itemList) {
+
+	public void setItemList(List<POItem> itemList) {
 		this.itemList = itemList;
 	}
+
 	public String getOrderNumber() {
 		return orderNumber;
 	}
+
 	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
+
 	public String getSupplierType() {
 		return supplierType;
 	}
